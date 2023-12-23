@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com" ></script>
+    <title>Contact-Droid</title>
+</head>
+<body>
+    <!-- component -->
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+<div class="relative bg-cover bg-center bg-no-repeat" style="background-image: url(https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1951&amp;q=80);">
+  <div class="absolute bg-gradient-to-b"></div>
+  <div class="mx-0 min-h-screen justify-center sm:flex sm:flex-row">
+    <div class="z-10 flex flex-col self-center p-10 sm:max-w-5xl xl:max-w-2xl">
+      <div class="hidden flex-col self-start text-white lg:flex">
+        <img src="" class="mb-3" />
+        <h1 class="mb-3 text-5xl font-bold">Hi , Droid Welcome's You</h1>
+        <p class="pr-3">Contact us today to learn more about our events, workshops, and resources. Our dedicated team is always available to answer your questions and provide assistance with any Android-related inquiries. Join us and be a part of the Android revolution!!</p>
+      </div>
+    </div>
+    <div class="z-10 flex justify-center self-center">
+      <div class="w-100 mx-auto rounded-2xl bg-white p-12">
+        <div class="mb-4">
+          <h3 class="text-2xl font-semibold text-gray-800">Sign In</h3>
+          <p class="text-gray-500">Please sign in to your account.</p>
+        </div>
+        <form class="mt-6" name="subm it-to-google-sheet" id="sub" action="" method='post'>
+            <div>
+              <label class="block text-gray-700">Enter Your Name </label>
+              <input type="text" name="name" id="" placeholder="Enter Full Name" class="mt-2 w-full rounded-lg border bg-gray-200 px-4 py-3 focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required />
+            </div>
+    
+            <div>
+              <label class="block text-gray-700">Enter Mobile Number</label>
+              <input type="number" name="phone" id="" placeholder="Enter Number" class="mt-2 w-full rounded-lg border bg-gray-200 px-4 py-3 focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required />
+            </div>
+    
+            <div>
+              <label class="block text-gray-700">Email Address</label>
+              <input type="email" name="email" id="" placeholder="Enter Email Address" class="mt-2 w-full rounded-lg border bg-gray-200 px-4 py-3 focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required />
+            </div>
+  
+            <div>
+              <label class="block text-gray-700">Enter Your Branch </label>
+              <input type="text" name="course" id="" placeholder="Enter Your Course" class="mt-2 w-full rounded-lg border bg-gray-200 px-4 py-3 focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required />
+            </div>
+    
+            
+    
+            <input onclick="callalert" type="submit" class="mt-6 block w-full rounded-lg bg-green-500 px-4 py-3 font-semibold text-white hover:bg-green-400 focus:bg-indigo-400"></input>
+  
+           
+   
+
+         
+        </div>
+      
+          
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script>
+    let form = document.querySelector("form");
+    // The document.querySelector() method returns the first element that matches a specified CSS selector.
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // The preventDefault() method stops the form from submitting and prevents the page from refreshing.
+        document.querySelector("#sub").value = "Submiting..";
+        // Change the value of the submit button to "Submitting..." while the form is being submitted.
+        let data = new FormData(form);
+        // The FormData() method creates a new FormData object that contains the values of all the form fields.
+        fetch('https://script.google.com/macros/s/AKfycbyq2dcDilfnb-jBXguJWVCkoUVTWxGg_BtS8mhasuJWfyBZ8u9bolHVFih4jpkZvQuOwg/exec', {
+                method: "POST",
+                body: data
+            })
+            // The fetch() method is used to make a request to the server and retrieve data.
+            // This is an example API endpoint. Replace it with the actual URL for the API endpoint you want to use.
+            .then(res => res.text())
+            // The .then() method is used to handle the response from the server.
+            // The response is converted to text using the res.text() method.
+            .then(data => {
+                window.location.assign("about.html");
+  
+             alert("Thank you For Contacting us !! We will contact you Soon. DROID COMMUNITY");
+  
+             
+              
+                // document.querySelector("#Thankyou for Contating us ...").innerHTML = data;
+                // The innerHTML property sets or returns the HTML content of an element.
+                // Here, we are setting the content of the <h1> element to the response from the server.
+                document.querySelector("#sub").value = "Submit"
+                
+                // Change the value of the submit button back to "Submit" after the form has been submitted.
+            });
+    })
+  </script>
+
+
+
+
+
+
+  
+</body>
+</html>
